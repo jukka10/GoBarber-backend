@@ -1,5 +1,5 @@
 import express from 'express';
-import routes from './routes/Appointments.routes';
+import routes from './routes/index';
 
 const server = express();
 
