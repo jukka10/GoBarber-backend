@@ -21,6 +21,7 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
     "class-methods-use-this": "off",
+    "@typescript-eslint/no-unused-vars": "off",
     "camelcase": "off",
     "no-console": "off",
     "import/extensions": [
