@@ -21,6 +21,7 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
     "class-methods-use-this": "off",
+    "camelcase": "off",
     "no-console": "off",
     "import/extensions": [
       "error",
