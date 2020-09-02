@@ -4,6 +4,7 @@ import { compare } from 'bcryptjs';
 
 import User from '../models/User';
 import auth from '../config/auth';
+import AppError from '../errors/AppError';
 
 interface Request {
   email: string;
@@ -23,13 +24,13 @@ export default class CreateSessionService {
     });
 
     if (!user) {
-      throw new Error('Incorrect email/password combination');
+      throw new AppError('Incorrect email/password combination', 401);
     }
 
     const passwordMatched = await compare(password, user.password);
 
     if (!passwordMatched) {
-      throw new Error('Incorrect email/password combination');
+      throw new AppError('Incorrect email/password combination', 401);
     }
 
     const token = sign({}, auth.secret, {

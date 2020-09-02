@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
+
 import auth from '../../config/auth';
+import AppError from '../../errors/AppError';
 
 interface TokenPayoad {
   iat: number;
@@ -16,7 +18,7 @@ export default function authenticated(
   const { authorization } = req.headers;
 
   if (!authorization) {
-    throw new Error('JWT token is missinng');
+    throw new AppError('JWT token is missinng', 401);
   }
 
   const [, token] = authorization.split(' ');
@@ -32,6 +34,6 @@ export default function authenticated(
 
     return next();
   } catch {
-    throw new Error('invalid JWT token ');
+    throw new AppError('invalid JWT token ', 401);
   }
 }
